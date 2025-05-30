@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CFD Designer - No-Code Design Optimization Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d3748 100%);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #64ffda;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at 30% 20%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(56, 178, 172, 0.1) 0%, transparent 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%2364ffda" opacity="0.1"><animate attributeName="opacity" values="0.1;0.3;0.1" dur="3s" repeatCount="indefinite"/></circle></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #38b2ac);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #64ffda, #38b2ac);
+            color: #0f1419;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #64ffda, #38b2ac);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.5);
+            box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.5);
+        }
+
+        .team-member h3 {
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            color: #38b2ac;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.5);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #64ffda, #38b2ac);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Technology Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border-left: 4px solid #64ffda;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateX(10px);
+            border-left-color: #38b2ac;
+        }
+
+        .tech-card h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            margin-top: 3rem;
+        }
+
+        .roadmap-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #64ffda;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-item:hover {
+            transform: translateX(10px);
+            border-left-color: #38b2ac;
+        }
+
+        .phase {
+            color: #64ffda;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Simple CFD Designer</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>SIMPLE CFD DESIGNER</h1>
+            <p>Engineers use computer software to build digital designs component by component by drawing onto a panel where they can test and simulate their designs.</p>
+            <a href="#solution" class="cta-button">Discover Our Solution</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <h2 class="section-title fade-in">THE PROBLEM</h2>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <h3>Manual Parameter Tweaking</h3>
+                    <p>Engineers spend weeks manually tweaking design parameters in simulation tools and CFD software, running endless trial-and-error cycles to optimize performance.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>Ideal for Automation</h3>
+                    <p>Much of this iterative work does not require deep technical expertise and is ideally suited for automation. Our informal surveys show that engineering students complain about the tweaking process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="container">
+            <h2 class="section-title fade-in">OUR SOLUTION</h2>
+            <div class="fade-in">
+                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">No-Code Design Optimization Platform</h3>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem;">
+                    We are developing a no-code design optimization platform to empower engineers to automatically improve design efficiency without needing programming knowledge. However, each field or even business would require different models.
+                </p>
+                <p style="text-align: center; font-size: 1.1rem;">
+                    Our big plan is to develop the technology and turn research along with help of supervisors from the University of Toronto into business innovation and then find customers.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Neural Network Optimization</h3>
+                    <p>Utilizes neural networks to intelligently iterate through optimizations, identifying ideal parameters for performance metrics such as structural integrity, flow efficiency, or weight reduction.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Intuitive Interface</h3>
+                    <p>Offers an intuitive visual interface, making it accessible to any engineer without requiring programming knowledge.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Dramatic Time Savings</h3>
+                    <p>Dramatically reduces optimization time from weeks to hours, enabling exploration of wider design variations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title fade-in">OUR TEAM</h2>
+            <p style="text-align: center; margin-bottom: 3rem;" class="fade-in">
+                We are a team of physics, software, and mechanical engineers. Although we are still young and just starting out, we possess valuable experience in building models and working with CFD design. Additionally, we anticipate receiving support from UTMIST, which will enable us to connect with more students and recruit the workforce necessary for our project in the coming months.
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <h3>Kaan Oktem</h3>
+                    <div class="role">Computer Science Major</div>
+                    <p>University of Manchester, with experience in startups, IoT, and machine learning.</p>
+                </div>
+                <div class="team-member fade-in">
+                    <h3>Farouk Yoisif</h3>
+                    <div class="role">Mechanical Engineer</div>
+                    <p>University of Manchester, CFD engineer with specialized knowledge in computational fluid dynamics.</p>
+                </div>
+                <div class="team-member fade-in">
+                    <h3>Davut Karatas</h3>
+                    <div class="role">Computer Science Graduate</div>
+                    <p>University of Toronto, possessing a strong foundation in linear algebra and mathematics.</p>
+                </div>
+                <div class="team-member fade-in">
+                    <h3>Ege Artan</h3>
+                    <div class="role">Physics Student</div>
+                    <p>University of Toronto, specializing in physics informed neural networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology">
+        <div class="container">
+            <h2 class="section-title fade-in">TECHNOLOGY</h2>
+            <p style="text-align: center; margin-bottom: 3rem;" class="fade-in">
+                Following an academic review of comparable methods, utilizing NIFs/PINOs to create CFD designs is a relatively new field of study that holds immense potential.
+            </p>
+            
+            <div class="tech-grid">
+                <div class="tech-card fade-in">
+                    <h3>Physics-Informed Neural Networks (PINO)</h3>
+                    <p>Creates functional mappings between input airfoils and output pressure fields while respecting physical laws.</p>
+                </div>
+                <div class="tech-card fade-in">
+                    <h3>Neural Implicit Flow (NIF)</h3>
+                    <p>Generates mesh-agnostic approximations for lift, drag, and moment coefficients.</p>
+                </div>
+                <div class="tech-card fade-in">
+                    <h3>Automated Dataset Generation</h3>
+                    <p>Combines airfoil databases with XFoil and Ansys Fluent for comprehensive training data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="section-title fade-in">FUTURE ROADMAP</h2>
+            <div class="roadmap">
+                <div class="roadmap-item fade-in">
+                    <div class="phase">Phase 1 (0-6 Months)</div>
+                    <h3>Technology R&D & Innovation Blueprint</h3>
+                    <p>Develop revolutionary NIF & PINO Technology, establishing business development strategies.</p>
+                </div>
+                <div class="roadmap-item fade-in">
+                    <div class="phase">Phase 2 (6-12 Months)</div>
+                    <h3>MVP Development & Market Validation</h3>
+                    <p>Build a Minimum Viable Product and potential customer outreach in the early stages.</p>
+                </div>
+                <div class="roadmap-item fade-in">
+                    <div class="phase">Phase 3 (12-18 Months)</div>
+                    <h3>Customer Acquisition & Commercialization</h3>
+                    <p>Secure paying customers and continuously refine the product. Goal: 10 paying customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact fade-in">
+                <h2>Ready to Transform Your Engineering Workflow?</h2>
+                <p style="margin: 1rem 0;">We need to provide targeted training tailored to various use cases. To accelerate their workflow, we intend to present our pitch to small business owners and start-ups.</p>
+                <a href="mailto:contact@simplecfddesigner.com" class="cta-button">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Simple CFD Designer. All rights reserved. | Revolutionizing engineering design optimization.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 20, 25, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 20, 25, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
