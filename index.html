@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple CFD Designer - No-Code Design Optimization Platform</title>
+    <title>AirfoilLearner - AI-Powered Airfoil Optimization Platform</title>
     <style>
         * {
             margin: 0;
@@ -186,6 +186,46 @@
             box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
         }
 
+        .problem-card h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(100, 255, 218, 0.5);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #64ffda;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #38b2ac;
+            font-size: 1.1rem;
+        }
+
         /* Team Section */
         .team-grid {
             display: grid;
@@ -220,6 +260,12 @@
             margin-bottom: 1rem;
         }
 
+        .team-member .university {
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
         /* Features Section */
         .features-grid {
             display: grid;
@@ -240,6 +286,11 @@
         .feature-card:hover {
             transform: translateY(-10px);
             border-color: rgba(100, 255, 218, 0.5);
+        }
+
+        .feature-card h3 {
+            color: #64ffda;
+            margin-bottom: 1rem;
         }
 
         .feature-icon {
@@ -305,6 +356,12 @@
             color: #64ffda;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .roadmap-item h3 {
+            color: #38b2ac;
+            margin-bottom: 1rem;
         }
 
         /* Contact Section */
@@ -361,14 +418,15 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Simple CFD Designer</div>
+            <div class="logo">AirfoilLearner</div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#problem">Problem</a></li>
                 <li><a href="#solution">Solution</a></li>
+                <li><a href="#market">Market</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="#technology">Technology</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -376,8 +434,8 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>SIMPLE CFD DESIGNER</h1>
-            <p>Engineers use computer software to build digital designs component by component by drawing onto a panel where they can test and simulate their designs.</p>
+            <h1>AIRFOILLEARNER</h1>
+            <p>AI-powered airfoil optimization platform combining classical CFD methods with modern machine learning to revolutionize aircraft wing, drone, and wind turbine blade design.</p>
             <a href="#solution" class="cta-button">Discover Our Solution</a>
         </div>
     </section>
@@ -388,12 +446,20 @@
             <h2 class="section-title fade-in">THE PROBLEM</h2>
             <div class="problem-grid">
                 <div class="problem-card fade-in">
-                    <h3>Manual Parameter Tweaking</h3>
-                    <p>Engineers spend weeks manually tweaking design parameters in simulation tools and CFD software, running endless trial-and-error cycles to optimize performance.</p>
+                    <h3>💸 Expensive & Time-Consuming</h3>
+                    <p>Engineers spend weeks manually iterating airfoil designs using expensive CFD software like ANSYS ($50K-$200K+ annually) or outdated tools like XFOIL from the 1980s, requiring deep expertise and long computation times.</p>
                 </div>
                 <div class="problem-card fade-in">
-                    <h3>Ideal for Automation</h3>
-                    <p>Much of this iterative work does not require deep technical expertise and is ideally suited for automation. Our informal surveys show that engineering students complain about the tweaking process.</p>
+                    <h3>🚫 Mid-Sized Companies Left Behind</h3>
+                    <p>Current solutions require either costly consulting services ($2,000-$20,000 per analysis with week-long turnarounds) or accepting suboptimal designs, leaving mid-sized companies and startups without accessible optimization capabilities.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>⏱️ Slow Optimization Cycles</h3>
+                    <p>Traditional methods are data-inefficient and don't leverage accumulated knowledge, resulting in 20-50 design cycles taking months to complete what could be done in hours with AI.</p>
+                </div>
+                <div class="problem-card fade-in">
+                    <h3>🎯 Critical Need for Efficiency</h3>
+                    <p>With aircraft drag representing the main source of energy losses, aerodynamic optimization could reduce fuel consumption by 20-25% and significantly cut emissions, but current tools make this inaccessible.</p>
                 </div>
             </div>
         </div>
@@ -404,45 +470,89 @@
         <div class="container">
             <h2 class="section-title fade-in">OUR SOLUTION</h2>
             <div class="fade-in">
-                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">No-Code Design Optimization Platform</h3>
+                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">Real-Time AI-Powered Airfoil Optimization</h3>
                 <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem;">
-                    We are developing AirfoilLearner, a no-code design optimization platform that generates pressure fields around airfoils and predicts lift, drag, and moment coefficients from vectorized airfoil forms. This Scientific Machine Learning approach empowers engineers to automatically improve design efficiency without needing programming knowledge.
-                </p>
-                <p style="text-align: center; font-size: 1.1rem;">
-                    Our end goal is to create a comprehensive Python package where users can input vectorized airfoils with system coefficients (Reynolds Number, Mach Number, Angle of Attack) to get resultant pressure field distributions and performance constants. We aim to contribute to the rapidly developing field of Scientific Machine Learning while revolutionizing aeronautics development processes.
+                    AirfoilLearner is an AI-powered platform that provides real-time airfoil optimization through a conversational AI agent, combining classical CFD methods with modern machine learning to help engineers design better aircraft wings, drone components, and wind turbine blades in minutes instead of weeks.
                 </p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card fade-in">
-                    <div class="feature-icon">🧠</div>
-                    <h3>Neural Network Optimization</h3>
-                    <p>Utilizes Physics-Informed Neural Operators (PINO) and Neural Implicit Flow (NIF) to intelligently iterate through optimizations, identifying ideal parameters for performance metrics such as structural integrity, flow efficiency, or weight reduction.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Intuitive Interface</h3>
-                    <p>Offers an intuitive visual interface built around our AirfoilLearner technology, making advanced Scientific Machine Learning accessible to any engineer without requiring programming knowledge.</p>
+                    <div class="feature-icon">🤖</div>
+                    <h3>Conversational AI Agent</h3>
+                    <p>Our AI agent works alongside engineers during design, providing instant optimization suggestions and explanations in natural language, keeping engineers in control while eliminating tedious iteration.</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="feature-icon">⚡</div>
-                    <h3>Dramatic Time Savings</h3>
-                    <p>Dramatically reduces optimization time from weeks to hours by eliminating manual mesh generation and using AI-powered pressure field prediction, enabling exploration of wider design variations.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🔬</div>
-                    <h3>Scientific Machine Learning</h3>
-                    <p>Built on cutting-edge Scientific Machine Learning research, combining traditional CFD knowledge with modern neural network architectures for unprecedented accuracy and speed.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
-                    <h3>Comprehensive Analysis</h3>
-                    <p>Provides complete airfoil analysis including lift, drag, and moment coefficients alongside detailed pressure field visualizations across varying Reynolds numbers, Mach numbers, and angles of attack.</p>
+                    <h3>30-1000x Faster</h3>
+                    <p>Leveraging physics-informed neural networks and classical optimization algorithms, we compress weeks of iteration into minutes with accuracy comparable to traditional CFD methods.</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🎯</div>
-                    <h3>Automated Optimization</h3>
-                    <p>Future capability to automatically optimize airfoil designs for specific performance criteria, leveraging our trained models to discover novel geometries with superior performance characteristics.</p>
+                    <h3>Hybrid Approach</h3>
+                    <p>Combines proven classical CFD methods with cutting-edge machine learning, ensuring reliability while pushing the boundaries of what's possible in real-time optimization.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>Democratizing Access</h3>
+                    <p>Making expert-level optimization accessible to individual engineers and mid-sized companies at a fraction of traditional costs, without requiring deep CFD expertise.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Research-Backed</h3>
+                    <p>Built on validated research from NREL and leading institutions, with collaboration from University of Toronto AI researchers ensuring cutting-edge capabilities.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Real Impact</h3>
+                    <p>Enabling 20-25% fuel burn reduction and significant emissions cuts across aerospace, wind energy, and drone sectors through optimized aerodynamic designs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Section -->
+    <section id="market">
+        <div class="container">
+            <h2 class="section-title fade-in">MARKET OPPORTUNITY</h2>
+            <div class="fade-in" style="text-align: center; margin-bottom: 3rem;">
+                <p style="font-size: 1.1rem;">The convergence of exploding AI investment, massive engineering software market growth, and proven technology creates an unprecedented opportunity.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">$100B+</div>
+                    <div class="stat-label">AI Funding in 2024<br>(80% YoY Growth)</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">$125B</div>
+                    <div class="stat-label">Engineering Software Market by 2030<br>(20.3% CAGR)</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">20-25%</div>
+                    <div class="stat-label">Potential Fuel Burn Reduction<br>Through Optimization</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">Feb 2026</div>
+                    <div class="stat-label">First Demo Launch<br>Target Date</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem;" class="fade-in">
+                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">Target Markets</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>✈️ Aerospace & Aviation</h3>
+                        <p>Aircraft manufacturers, aerospace startups, and aviation engineering firms seeking to optimize wing designs and reduce fuel consumption.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌬️ Wind Energy</h3>
+                        <p>Wind turbine manufacturers and renewable energy companies optimizing blade designs for maximum efficiency and power generation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🚁 Drone Industry</h3>
+                        <p>Drone manufacturers, UAV startups, and delivery companies requiring optimized propeller and airfoil designs for performance and endurance.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -451,110 +561,84 @@
     <!-- Team Section -->
     <section id="team">
         <div class="container">
-            <h2 class="section-title fade-in">OUR TEAM</h2>
-            <p style="text-align: center; margin-bottom: 3rem;" class="fade-in">
-                We are a team of physics, software, and mechanical engineers. Although we are still young and just starting out, we possess valuable experience in building models and working with CFD design. Additionally, we anticipate receiving support from UTMIST, which will enable us to connect with more students and recruit the workforce necessary for our project in the coming months.
+            <h2 class="section-title fade-in">OUR MULTIDISCIPLINARY TEAM</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem;" class="fade-in">
+                We uniquely combine Manchester's aerospace engineering expertise with Toronto's cutting-edge AI research capabilities, positioning us to bridge the gap between academic innovation and commercial engineering applications.
             </p>
             
             <div class="team-grid">
                 <div class="team-member fade-in">
                     <h3>Kaan Oktem</h3>
-                    <div class="role">Computer Science Major</div>
-                    <p>University of Manchester, with experience in startups, IoT, and machine learning.</p>
+                    <div class="role">Founder & CEO</div>
+                    <div class="university">University of Manchester</div>
+                    <p style="margin-top: 1rem;">Computer Science & Machine Learning. Leading product vision, AI/ML development, and business strategy. Validated market demand through direct industry engagement.</p>
                 </div>
                 <div class="team-member fade-in">
-                    <h3>Farouk Yousif</h3>
-                    <div class="role">Mechanical Engineer</div>
-                    <p>University of Manchester, CFD engineer with specialized knowledge in computational fluid dynamics.</p>
-                </div>
-                <div class="team-member fade-in">
-                    <h3>Davut Karatas</h3>
-                    <div class="role">Computer Science Major</div>
-                    <p>University of Toronto, possessing a strong foundation in linear algebra and mathematics.</p>
+                    <h3>Davut Karats</h3>
+                    <div class="role">Co-founder</div>
+                    <div class="university">University of Toronto</div>
+                    <p style="margin-top: 1rem;">AI Research. Leading AI model development and research collaboration. Expertise in physics-informed neural networks and computational methods.</p>
                 </div>
                 <div class="team-member fade-in">
                     <h3>Ege Artan</h3>
-                    <div class="role">Physics Major</div>
-                    <p>University of Toronto, specializing in physics informed neural networks.</p>
+                    <div class="role">Co-founder & Toronto Team Lead</div>
+                    <div class="university">University of Toronto</div>
+                    <p style="margin-top: 1rem;">Physics. Leading the Toronto satellite team. Deep understanding of fluid dynamics and computational physics essential for CFD validation.</p>
                 </div>
+                <div class="team-member fade-in">
+                    <h3>Zakariyya Brewster</h3>
+                    <div class="role">Team Member</div>
+                    <div class="university">University of Toronto</div>
+                    <p style="margin-top: 1rem;">Aerospace Engineering. Brings critical aerospace expertise and CFD knowledge to ensure our models meet industry standards.</p>
+                </div>
+                <div class="team-member fade-in">
+                    <h3>Abhinav Kaushik</h3>
+                    <div class="role">Team Member</div>
+                    <div class="university">University of Toronto</div>
+                    <p style="margin-top: 1rem;">Computer Science. Leading baseline MLP model development for comparative research and performance benchmarking.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;" class="fade-in">
+                <p style="font-size: 1rem; opacity: 0.9;">We're actively expanding through ongoing interviews, bringing in additional expertise as we progress toward our February 2026 demo.</p>
             </div>
         </div>
     </section>
 
     <!-- Technology Section -->
-    <section id="technology">
+    <section id="technology" style="background: rgba(0, 0, 0, 0.2);">
         <div class="container">
-            <h2 class="section-title fade-in">TECHNOLOGY</h2>
-            <div class="fade-in" style="text-align: center; margin-bottom: 3rem;">
-                <h3 style="color: #64ffda; margin-bottom: 1.5rem;">AirfoilLearner: Our Core Technology</h3>
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                    Our project, AirfoilLearner, generates pressure fields around airfoils and predicts lift, drag, and moment coefficients from vectorized airfoil forms. This Scientific Machine Learning approach drastically improves CFD analysis time during development processes.
-                </p>
-                <p style="font-size: 1rem; opacity: 0.9;">
-                    Following an academic review of comparable methods, utilizing NIFs/PINOs to create CFD designs is a relatively new field of study that holds immense potential. Current CFD analysis spends most time building meshes and performing computationally intensive calculations - our approach revolutionizes this process.
-                </p>
-            </div>
+            <h2 class="section-title fade-in">TECHNOLOGY & APPROACH</h2>
             
             <div class="tech-grid">
                 <div class="tech-card fade-in">
-                    <h3>Physics-Informed Neural Operators (PINO)</h3>
-                    <p>Creates functional mappings between input airfoils and output pressure fields while respecting physical laws. Our F-PINO models provide differential approximation capabilities for complex fluid dynamics scenarios.</p>
+                    <h3>Phase 1: Research & Validation</h3>
+                    <p>Comparing the most recent ML models with suitable baselines for fluid-related PDEs, ensuring we're building on proven foundations rather than hype.</p>
                 </div>
                 <div class="tech-card fade-in">
-                    <h3>Neural Implicit Flow (NIF)</h3>
-                    <p>Generates mesh-agnostic approximations for lift, drag, and moment coefficients using ShapeNet and ParameterNet architectures. Creates mappings from airfoil and system conditions to discrete solutions without physics loss.</p>
+                    <h3>Phase 2: Model Development</h3>
+                    <p>Exploring various approaches including physics-informed neural operator models for CFD optimization, combining classical and modern methods.</p>
                 </div>
                 <div class="tech-card fade-in">
-                    <h3>Automated Dataset Generation</h3>
-                    <p>Combines airfoil databases with XFoil and Ansys Fluent for comprehensive training data. Utilizes Reynolds Number, Mach Number, and Angle of Attack variations for robust model training.</p>
+                    <h3>Phase 3: Platform Integration</h3>
+                    <p>Developing AirfoilLearner platform that integrates our own models, newly developed ML approaches, and standard numerical methods with an AI agent deciding the most effective approach.</p>
                 </div>
             </div>
 
-            <!-- Research Goals Section -->
             <div style="margin-top: 4rem;" class="fade-in">
-                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">Research & Development Goals</h3>
-                <div class="tech-grid">
-                    <div class="tech-card fade-in">
-                        <h3>Phase 1: Dataset Generation</h3>
-                        <p><strong>Timeline:</strong> 4 weeks<br>
-                        Generate comprehensive datasets for both coefficients and pressure fields using automated XFoil processing and Ansys Fluent simulations across various Reynolds, Mach, and AoA conditions.</p>
+                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">Why Our Approach Works</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🎯 Starting Focused</h3>
+                        <p>Beginning with airfoils - well-understood physics, rich training data (NACA, UIUC databases), clear success metrics, and validated demand.</p>
                     </div>
-                    <div class="tech-card fade-in">
-                        <h3>Phase 2: Model Training</h3>
-                        <p><strong>Timeline:</strong> 6-8 weeks<br>
-                        Train Neural Implicit Flow (NIF) models for coefficient prediction and Fourier Physics-Informed Neural Operators (F-PINO) for pressure field generation, introducing system complexity step-by-step.</p>
+                    <div class="feature-card">
+                        <h3>🔬 Research-Driven</h3>
+                        <p>Collaborating with University of Toronto AI researchers and building on NREL's proven invertible neural network approach for airfoil design.</p>
                     </div>
-                    <div class="tech-card fade-in">
-                        <h3>Phase 3: Optimization Engine</h3>
-                        <p><strong>Timeline:</strong> Future development<br>
-                        Develop optimization models that can automatically improve airfoil designs for maximized lift and minimized drag across wide parameter ranges, creating an AI assistant for engineering workflows.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Technical Implementation -->
-            <div style="margin-top: 4rem;" class="fade-in">
-                <h3 style="text-align: center; color: #64ffda; margin-bottom: 2rem;">Technical Implementation</h3>
-                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(100, 255, 218, 0.2);">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <div>
-                            <h4 style="color: #38b2ac; margin-bottom: 1rem;">Development Stack</h4>
-                            <ul style="list-style: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem;">• PyTorch on CUDA for neural network training</li>
-                                <li style="margin-bottom: 0.5rem;">• XFoil for airfoil analysis automation</li>
-                                <li style="margin-bottom: 0.5rem;">• Ansys Fluent for pressure field generation</li>
-                                <li style="margin-bottom: 0.5rem;">• Python package development for deployment</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 style="color: #38b2ac; margin-bottom: 1rem;">Success Metrics</h4>
-                            <ul style="list-style: none; padding: 0;">
-                                <li style="margin-bottom: 0.5rem;">• Mean Squared Error comparison with CFD solvers</li>
-                                <li style="margin-bottom: 0.5rem;">• Geometric similarity metrics (Hausdorff distance)</li>
-                                <li style="margin-bottom: 0.5rem;">• Generation time improvements</li>
-                                <li style="margin-bottom: 0.5rem;">• Real-world wind tunnel validation</li>
-                            </ul>
-                        </div>
+                    <div class="feature-card">
+                        <h3>🚀 Scalable Vision</h3>
+                        <p>From airfoils to full wings to comprehensive engineering optimization platform - starting narrow, expanding strategically based on validated success.</p>
                     </div>
                 </div>
             </div>
@@ -564,22 +648,27 @@
     <!-- Roadmap Section -->
     <section id="roadmap">
         <div class="container">
-            <h2 class="section-title fade-in">FUTURE ROADMAP</h2>
+            <h2 class="section-title fade-in">ROADMAP</h2>
             <div class="roadmap">
                 <div class="roadmap-item fade-in">
-                    <div class="phase">Phase 1 (0-6 Months)</div>
-                    <h3>Technology R&D & Innovation Blueprint</h3>
-                    <p>Develop revolutionary NIF & PINO Technology, establishing business development strategies.</p>
+                    <div class="phase">Next 8 Months (Now - Feb 2026)</div>
+                    <h3>Research Phase & First Demo</h3>
+                    <p>Complete research comparing ML models with classical CFD baselines, develop first working prototype with core optimization functionality, release demo by February 2026, onboard 10-15 early adopters (engineering students then industry professionals), establish partnerships with 2-3 companies in wind turbine or drone sectors, and validate business model with first paying customer or letter of intent.</p>
                 </div>
                 <div class="roadmap-item fade-in">
-                    <div class="phase">Phase 2 (6-12 Months)</div>
-                    <h3>MVP Development & Market Validation</h3>
-                    <p>Build a Minimum Viable Product and potential customer outreach in the early stages.</p>
+                    <div class="phase">8-14 Months</div>
+                    <h3>Product Refinement & Market Validation</h3>
+                    <p>Iterate based on user feedback, expand to adjacent aerodynamic applications (full wing optimization, turbine blades), build out AI agent conversational capabilities, and secure 25-50 active users across target sectors.</p>
                 </div>
                 <div class="roadmap-item fade-in">
-                    <div class="phase">Phase 3 (12-18 Months)</div>
-                    <h3>Customer Acquisition & Commercialization</h3>
-                    <p>Secure paying customers and continuously refine the product. Goal: 10 paying customers.</p>
+                    <div class="phase">14-24 Months</div>
+                    <h3>Scale & Commercial Launch</h3>
+                    <p>Launch commercial platform, achieve product-market fit with paying customers, expand team, raise seed funding, and establish position as the go-to airfoil optimization platform before expanding to broader engineering optimization.</p>
+                </div>
+                <div class="roadmap-item fade-in">
+                    <div class="phase">Long-Term Vision</div>
+                    <h3>Comprehensive Engineering Optimization Platform</h3>
+                    <p>Expand beyond airfoils to comprehensive no-code optimization platform across engineering sectors, building custom models for various industries, and positioning for potential acquisition by industry leaders like Siemens.</p>
                 </div>
             </div>
         </div>
@@ -589,9 +678,14 @@
     <section id="contact">
         <div class="container">
             <div class="contact fade-in">
-                <h2>Ready to Transform Your Engineering Workflow?</h2>
-                <p style="margin: 1rem 0;">We need to provide targeted training tailored to various use cases. To accelerate their workflow, we intend to present our pitch to small business owners and start-ups.</p>
-                <a href="mailto:contact@simplecfddesigner.com" class="cta-button">Get in Touch</a>
+                <h2>Join Us in Revolutionizing Engineering Design</h2>
+                <p style="margin: 1.5rem 0; font-size: 1.1rem;">
+                    Whether you're an engineer interested in early access, an investor excited about deep-tech AI, or a company looking for pilot partnerships, we'd love to hear from you.
+                </p>
+                <a href="mailto:contact@airfoillearner.com" class="cta-button">Get in Touch</a>
+                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+                    Demo Launch: February 2026 | Based in Manchester, UK & Toronto, Canada
+                </p>
             </div>
         </div>
     </section>
@@ -599,7 +693,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Simple CFD Designer. All rights reserved. | Revolutionizing engineering design optimization.</p>
+            <p>&copy; 2025 AirfoilLearner. All rights reserved. | Democratizing airfoil optimization through AI.</p>
         </div>
     </footer>
 
